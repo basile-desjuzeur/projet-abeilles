@@ -72,10 +72,11 @@ source venv_bees_detection/bin/activate (Linux)
 
 ## 1. Scrap Inaturalist
 
-See [How to scrap iNaturalist ?](./datafiles/scrap_inat/download_inaturalist.md).
+
+See [How to scrap iNaturalist ?](./datafiles/scrap_inat/download_inaturalist.md)
 
 
-## 2. Detection 
+## 2. Detection and crop : see this [notebook](./Notebooks/1_detections_train_and_predict.ipynb) for more precise informations.
 
 The data used to train YOLO algorithm should be in a csv with following structure : 
 

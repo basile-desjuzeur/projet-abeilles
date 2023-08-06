@@ -1,0 +1,72 @@
+
+{
+    "model" : {
+        "backend":              "MobileNetV2-alpha=1.0",
+        "input_size_w":         224,
+        "input_size_h":         224,
+        "gray_mode":            false,
+        "anchors":              [7.40485,7.71492, 12.97068,13.00621, 15.24171,22.03838, 21.92810,17.35615, 25.13012,25.89482],
+        "labels":               ["Anthophila"],
+        "unwanted_labels":      ["unknown"]
+    },
+
+
+
+    "data" : {
+        "base_path":            "../data_bees_detection",
+        "dataset_csv_file":     "/datafiles/yolo/inputs/BD_71_input.csv",
+        "train_csv_file":       "/datafiles/yolo/inputs/BD_71_train.csv",
+        "valid_csv_file":       "/datafiles/yolo/inputs/BD_71_val.csv",
+        "test_csv_file":        ["/datafiles/yolo/inputs/BD_71_test.csv"], 
+        "saved_weight_path":    "/datafiles/yolo/saved_weights/benchmark_weights/",
+        "saved_pickles_path":   "/datafiles/yolo/pickles/histories/",
+        "evaluations_path":     "/datafiles/yolo/evaluations/"
+    },
+
+    "train": {  
+        "train_times":          1,
+        "pretrained_weights":   "/src/datafiles/yolo/saved_weights/Best_model_bestLoss.h5",
+        "freeze":               false,
+        "finetune":             false,
+        "batch_size":           16,
+        "learning_rate":        1e-5,
+        "nb_epochs":            80,
+
+        "workers":              12,
+        "max_queue_size":       40,
+        "early_stop":           false,
+        "tensorboard_log_dir":  "./logs/1",
+
+        "optimizer": {
+            "name":                         "Adam",
+            "beta_1":                       0.9,
+            "beta_2":                       0.999,
+            "epsilon":                      1e-01,
+            "decay":                        0.0,
+            "lr_scheduler": {
+                "name":                     "CosineDecayRestarts",
+                "initial_learning_rate":    1e-5,
+                "decay_steps":              1000,
+                "alpha":                    0.0 
+
+            }
+        },
+
+        "object_scale":         5.0 ,
+        "no_object_scale":      1.0,
+        "coord_scale":          1.0,
+        "class_scale":          5.0,
+
+        "augmentation":         "v2",
+        "sampling":             false,
+        "mosaic":               "none",
+
+        "saved_weights_name":   "/src/datafiles/yolo/saved_weights/test_model.h5"
+        
+    },
+
+    "valid": {
+        "iou_threshold":        0.4,
+        "score_threshold":      0.5
+    }
+}
